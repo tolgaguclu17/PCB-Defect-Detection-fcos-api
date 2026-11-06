@@ -49,22 +49,25 @@ class PCBModelWrapper:
         """Clears the session."""
         self.session = None
 
-    def predict(self, img_np: np.ndarray, score_thresh: float = 0.50) -> Dict[str, np.ndarray]:
-        """
-        It performs model inference and returns the
-        boxes, scores, and labels that exceed the specified threshold.
-        """
-        if self.session is None:
-            raise RuntimeError("The model has not been loaded. Please call load_model() first.")
+    def predict(self, img_np: np.ndarray, score_thresh: float = 0.60) -> Dict[str, np.ndarray]:
+    """
+    It performs model inference and returns the
+    boxes, scores, and labels that exceed the specified threshold.
+    """
+    if self.session is None:
+        raise RuntimeError("The model has not been loaded. Please call load_model() first.")
 
-        input_name = self.session.get_inputs()[0].name
-        outputs = self.session.run(None, {input_name: img_np})
+    input_name = self.session.get_inputs()[0].name
+    outputs = self.session.run(None, {input_name: img_np})
 
-        boxes, scores, labels = outputs[0], outputs[1], outputs[2]
+    boxes = np.squeeze(outputs[0])   # (N, 4)
+    scores = np.squeeze(outputs[1])  # (N,)
+    labels = np.squeeze(outputs[2])  # (N,)
 
-        keep = scores >= score_thresh
-        return {
-            "boxes": boxes[keep],
-            "scores": scores[keep],
-            "labels": labels[keep]
-        }
+    keep = scores >= score_thresh
+    
+    return {
+        "boxes": boxes[keep],
+        "scores": scores[keep],
+        "labels": labels[keep]
+    }
