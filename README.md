@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PCB Defect Detection — FCOS + ONNX + FastAPI
 
 End-to-end object detection pipeline for **printed circuit board (PCB) manufacturing defects**: from dataset preparation and model benchmarking, through optimised training and ONNX export, to a containerised REST API for real-time inference.
@@ -330,3 +331,5 @@ for defect in result["found_defects"]:
 - PCB defect dataset: [Roboflow Universe — Hubei University of Technology](https://universe.roboflow.com/hubei-university-of-technology-rmbpi/pcb-ecjga)
 - Additional qualitative test images: [University of Strathclyde PCB defect set](https://universe.roboflow.com/university-of-strathclyde-m436x/pcb-defect-94yfu)
 - Built with [PyTorch / torchvision](https://pytorch.org/), [Albumentations](https://albumentations.ai/), [ONNX Runtime](https://onnxruntime.ai/), [FastAPI](https://fastapi.tiangolo.com/) and [Docker](https://www.docker.com/).
+
+
