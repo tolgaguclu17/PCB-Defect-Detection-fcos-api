@@ -2,7 +2,7 @@ import requests
 import json
 
 # The URL of the API
-API_URL = "http://127.0.0.1:7860/predict"
+API_URL = "http://127.0.0.1:10000/predict"
 
 IMAGE_PATH = "assets/01_pinhole_05.jpg"
 
