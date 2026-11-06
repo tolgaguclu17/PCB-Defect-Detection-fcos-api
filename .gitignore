@@ -218,3 +218,38 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# PCB Defect Detection Specific Additions
+
+# Model Weights & Artifacts 
+*.onnx
+*.pth
+*.pt
+*.bin
+*.engine
+*.safetensors
+
+# Models directory inside project 
+models/*.onnx
+models/*.pth
+
+# Visual Studio Code & PyCharm 
+.vscode/
+.idea/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# Training Logs & Experiment Trackers
+runs/
+wandb/
+tensorboard/
+*.log
+
+# Local Datasets & Raw Images
+data/
+datasets/
+*.zip
+*.tar.gz
