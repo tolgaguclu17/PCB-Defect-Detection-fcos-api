@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # PCB Defect Detection — FCOS + ONNX + FastAPI
 
 End-to-end object detection pipeline for **printed circuit board (PCB) manufacturing defects**: from dataset preparation and model benchmarking, through optimised training and ONNX export, to a containerised REST API for real-time inference.
