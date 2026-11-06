@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Query
 from pydantic import BaseModel
 from typing import List
 from contextlib import asynccontextmanager
