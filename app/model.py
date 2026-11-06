@@ -50,10 +50,10 @@ class PCBModelWrapper:
         self.session = None
 
     def predict(self, img_np: np.ndarray, score_thresh: float = 0.60) -> Dict[str, np.ndarray]:
-    """
-    It performs model inference and returns the
-    boxes, scores, and labels that exceed the specified threshold.
-    """
+        """
+        It performs model inference and returns the
+        boxes, scores, and labels that exceed the specified threshold.
+        """
         if self.session is None:
             raise RuntimeError("The model has not been loaded. Please call load_model() first.")
     
