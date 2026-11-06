@@ -34,7 +34,8 @@ def read_root():
     return {"status": "ok", "message": "The server is up"}
 
 @app.post("/predict", response_model=PredictResponse)
-async def make_prediction(file: UploadFile = File(...)):
+async def make_prediction(file: UploadFile = File(...),
+                          score_thresh: float = Query(0.60, ge=0.1, le=1.0, description="Confidence threshold filter")):
     filename = file.filename
     image_bytes = await file.read()
 
