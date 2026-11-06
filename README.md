@@ -2,6 +2,13 @@
 
 End-to-end object detection pipeline for **printed circuit board (PCB) manufacturing defects**: from dataset preparation and model benchmarking, through optimised training and ONNX export, to a containerised REST API for real-time inference.
 
+# PCB Defect Detection API (FCOS)
+
+An end-to-end industrial PCB defect detection API service powered by FCOS, ONNX Runtime, and FastAPI.
+
+> **Live API Service:** [https://pcb-fcos-api.onrender.com](https://pcb-fcos-api.onrender.com)  
+> **Interactive API Docs (Swagger UI):** [https://pcb-fcos-api.onrender.com/docs](https://pcb-fcos-api.onrender.com/docs)
+
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-torchvision-EE4C2C)
 ![ONNX Runtime](https://img.shields.io/badge/ONNX%20Runtime-inference-005CED)
