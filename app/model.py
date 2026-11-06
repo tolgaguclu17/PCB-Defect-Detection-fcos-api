@@ -7,7 +7,7 @@ from typing import List, Dict, Any, Optional
 MODEL_PATH = os.path.join("models", "fcos_pcb_model.onnx")
 MODEL_URL = "https://github.com/tolgaguclu17/PCB-Defect-Detection-Fcos-Api/releases/download/v1.0.0/fcos_pcb_model.onnx"
 
-# If there is no model file, automatically download it from GitHub Releases in the production environment
+# Automatically download the model file in the production environment if does not exists
 if not os.path.exists(MODEL_PATH):
     os.makedirs("models", exist_ok=True)
     print("Model file not found locally. Downloading from GitHub Release...")
@@ -26,15 +26,23 @@ CLASS_NAMES: Dict[int, str] = {
 }
 
 class PCBModelWrapper:
-    def __init__(self, model_path: str = "models/fcos_pcb_model.onnx"):
+    def __init__(self, model_path: str = MODEL_PATH):
         self.model_path = model_path
         self.session: Optional[ort.InferenceSession] = None
 
     def load_model(self):
-        """Loads the ONNX model into memory."""
+        """Loads the ONNX model into memory with Render 512MB RAM optimizations."""
+        # Custom ONNX optimizations for the 512 MB RAM limit
+        opts = ort.SessionOptions()
+        opts.enable_cpu_mem_arena = False  # Prevents RAM overload
+        opts.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
+        opts.intra_op_num_threads = 1
+        opts.inter_op_num_threads = 1
+
         self.session = ort.InferenceSession(
             self.model_path,
-            providers=["CUDAExecutionProvider", "CPUExecutionProvider"]
+            sess_options=opts,
+            providers=["CPUExecutionProvider"]
         )
 
     def clear_model(self):
