@@ -54,20 +54,20 @@ class PCBModelWrapper:
     It performs model inference and returns the
     boxes, scores, and labels that exceed the specified threshold.
     """
-    if self.session is None:
-        raise RuntimeError("The model has not been loaded. Please call load_model() first.")
-
-    input_name = self.session.get_inputs()[0].name
-    outputs = self.session.run(None, {input_name: img_np})
-
-    boxes = np.squeeze(outputs[0])   # (N, 4)
-    scores = np.squeeze(outputs[1])  # (N,)
-    labels = np.squeeze(outputs[2])  # (N,)
-
-    keep = scores >= score_thresh
+        if self.session is None:
+            raise RuntimeError("The model has not been loaded. Please call load_model() first.")
     
-    return {
-        "boxes": boxes[keep],
-        "scores": scores[keep],
-        "labels": labels[keep]
-    }
+        input_name = self.session.get_inputs()[0].name
+        outputs = self.session.run(None, {input_name: img_np})
+    
+        boxes = np.squeeze(outputs[0])   # (N, 4)
+        scores = np.squeeze(outputs[1])  # (N,)
+        labels = np.squeeze(outputs[2])  # (N,)
+    
+        keep = scores >= score_thresh
+        
+        return {
+            "boxes": boxes[keep],
+            "scores": scores[keep],
+            "labels": labels[keep]
+        }
